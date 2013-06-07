@@ -11,13 +11,13 @@ Add a powerful FAQ & Knowledge Base on your WordPress Blog or Website. Powered b
 
 **Add a powerful FAQ & Knowledge Base on your WordPress Blog or Website. Powered by Casengo.**
 
-To configure the FAQ plugin you must have a Casengo account. Have an account already? Great! If not, <a href=\"http://get.casengo.com/signup/?ref=wordpress-plugin-page&utm_source=WordPress&utm_medium=Plugin&utm_campaign=WordPress%2BPlugin%2BSignups\" target=\"_blank\" title=\"Sign up for a free Casengo account\">sign up here</a>.
+To configure the FAQ plugin you must have a Casengo account. Have an account already? Great! If not, <a href=\"http://get.casengo.com/signup/?ref=wordpress-wss-plugin-page&utm_source=WordPress&utm_medium=Plugin&utm_campaign=WordPress%2BPlugin%2BSignups\" target=\"_blank\" title=\"Sign up for a free Casengo account\">sign up here</a>.
 
 Casengo is free to trial for 30 days; thereafter, **the first agent is always free!**
 
 **It is Easy! Get started in 2 minutes, no training needed!**
 
-Step 1. Create a free Casengo account at <a href=\"http://get.casengo.com/signup/?ref=wordpress-plugin-page&utm_source=WordPress&utm_medium=Plugin&utm_campaign=WordPress%2BPlugin%2BSignups\" target=\"_blank\">get.casengo.com/signup</a><br>
+Step 1. Create a free Casengo account at <a href=\"http://get.casengo.com/signup/?ref=wordpress-wss-plugin-page&utm_source=WordPress&utm_medium=Plugin&utm_campaign=WordPress%2BPlugin%2BSignups\" target=\"_blank\">get.casengo.com/signup</a><br>
 Step 2. log into your WordPress Admin Site, search for plugin 'casengo FAQ' and install it.<br>
 Step 3. Go to the Casengo config section in WordPress and set your unique Casengo subdomain, and activate the page. The page will now be live and is accessible via the menu.
 Step 4. Log into the <a href="http://login.casengo.com/admin/#!/kb/categories">Casengo admin site</a>to start adding categories and FAQ articles</li>
