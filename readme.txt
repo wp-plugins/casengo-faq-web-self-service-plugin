@@ -5,7 +5,7 @@ Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: tags/1.0.1
 
-Casengo is Customer Support Software (Live Chat, Email, Social Media) from the Cloud, First User is Always Free!
+Add a web-selfservice (faq) page to your WordPress blog or website, letting your customers find answers to their Frequently Asked Questions. Powered by Casengo.
 
 == Description ==
 
