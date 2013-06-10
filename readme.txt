@@ -1,6 +1,6 @@
 === Selfservice FAQ Plugin for WordPress - Casengo ===
 Contributors: casengo 
-Tags: casengo, faq
+Tags: casengo, faq, faq plugin, frequently asked question, knowledge base, knowledgebase, plugin, selfservice, webselfservice
 Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: tags/1.0.1
@@ -13,7 +13,7 @@ Add a powerful FAQ & Knowledge Base on your WordPress Blog or Website. Powered b
 
 To configure the FAQ plugin you must have a Casengo account. Have an account already? Great! If not, <a href=\"http://get.casengo.com/signup/?ref=wordpress-wss-plugin-page&utm_source=WordPress&utm_medium=Plugin&utm_campaign=WordPress%2BPlugin%2BSignups\" target=\"_blank\" title=\"Sign up for a free Casengo account\">sign up here</a>.
 
-Casengo is free to trial for 30 days; thereafter, **the first agent is always free!**
+Casengo is a new social customer support tool, free to trial for 30 days; thereafter, **the first agent is always free!**
 
 **It is Easy! Get started in 2 minutes, no training needed!**
 
