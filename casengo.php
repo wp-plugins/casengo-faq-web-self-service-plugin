@@ -463,7 +463,7 @@ function casengo_faq_settings() {
         <ul style="margin-left:40px; font-size:18px">
             <li><span style="font-size:18px">Follow the instructions below to install the FAQ page on your site:<br/></span>
             <li>--------------------------------------------------------------------------------------</li>
-            <li>Step 1. <a href="<a href="http://get.casengo.com/signup/?ref=wordpress-plugin-faq-admin&amp;utm_source=WordPress&amp;utm_medium=Plugin&amp;utm_campaign=WordPress%2BPlugin%2BSignups" target="_blank" title="Sign up for a free Casengo account" rel="nofollow">Create a Casengo account for free</a></li>
+            <li>Step 1. <a href="http://get.casengo.com/signup/?ref=wordpress-plugin-faq-admin&amp;utm_source=WordPress&amp;utm_medium=Plugin&amp;utm_campaign=WordPress%2BPlugin%2BSignups" target="_blank" title="Sign up for a free Casengo account" rel="nofollow">Create a Casengo account for free</a></li>
             <li>Step 2. Fill in your unique Casengo Username below</li>
             <li>Step 3. Enter a page title</li>
             <li>Step 4. Press 'Save Changes' to commit new settings</li>
