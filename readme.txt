@@ -1,6 +1,6 @@
-=== Selfservice FAQ Plugin for WordPress - Casengo ===
+=== FAQ Plugin - Casengo ===
 Contributors: casengo 
-Tags: casengo, faq, faq plugin, frequently asked question, knowledge base, knowledgebase, plugin, selfservice, web selfservice, kb
+Tags: article, casengo, faq, faq plugin, frequently asked question, knowledge base, knowledgebase, page, plugin, selfservice, support, support portal, webselfservice, wss
 Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: tags/1.0.1
