@@ -1,4 +1,4 @@
-=== FAQ Knowledge Base Plugin ===
+=== FAQ & Knowledge Base Plugin ===
 Contributors: casengo 
 Tags: article, casengo, faq, faq plugin, frequently asked question, knowledge base, knowledgebase, page, plugin, selfservice, support, support portal, webselfservice, wss
 Requires at least: 3.3
