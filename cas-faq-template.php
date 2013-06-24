@@ -123,6 +123,14 @@ get_header(); ?>
 <?php
     // curl needed to load
     // if url contains id, page variables (article/category pages), add querystring to fetch url
+    
+        // first determine if default permalink is used for faq page (?page_id=123)
+    if(isset($_GET['page_id'])) {
+        $permalink_default = true;        
+    } else {
+        $permalink_default = false;
+    }
+    
     $querystring = "?embed=wp-v1&";
 
     if(isset($_GET['page'])) {
@@ -145,7 +153,21 @@ get_header(); ?>
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
     $response = curl_exec($curl);
 
+     // process output
+     // get the body content only
      preg_match("~<body[^>]*>(.*?)</body>~si", $response, $output);
+     
+     // remove reference to load external script
+     $output[1] = str_replace("<script src=\"support/tpl.js\"></script>","",$output[1]);
+     
+     if($permalink_default) {
+        // if url is using WP's default permalink setting: ?page_id=123
+        // add page_id to the querystring of every link 
+        $output[1] = str_replace("href=\"?","href=\"?page_id=" . $_GET['page_id'] . "&",$output[1]);
+        // transform search form to include page_id as a hidden form object
+        $output[1] = str_replace("<input type=\"hidden\" id=\"page\" name=\"page\" value=\"search\">","<input type=\"hidden\" id=\"page\" name=\"page\" value=\"search\"><input type=\"hidden\" id=\"page_id\" name=\"page_id\" value=\"" . $_GET['page_id'] . "\">",$output[1]);
+     }
+     
      echo $output[1] . '<br/>';
     curl_close($curl);
 ?>

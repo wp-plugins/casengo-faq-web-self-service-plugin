@@ -3,7 +3,7 @@ Contributors: casengo
 Tags: admin, answer, article, casengo, faq, faq plugin, frequently asked question, help desk, helpdesk, html, images, knowledge base, knowledgebase, link, links, page, plugin, question, questions seo, selfservice, support, support portal, web, webselfservice, widget, widgets, wss
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: tags/1.0.1
+Stable tag: tags/1.1.2
 
 Add a powerful FAQ & Knowledge Base on your WordPress Blog or Website. Powered by Casengo.
 
@@ -83,7 +83,8 @@ Go to your Wordpress admin site and click menu 'Settings' -> 'Casengo FAQ'. In t
 
 == Changelog ==
 
-1.0 Initial release   
+1.0 Initial release
+1.1 Bug fixed: Now works properply when using default permalinks (?page_id=)    
 
 ==Readme Generator== 
 

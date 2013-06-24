@@ -3,7 +3,7 @@
    Plugin Name: Casengo FAQ - Selfservice Plugin
    Plugin URI: http://www.casengo.com/plugins/wordpress/v2
    Description: A plugin to embed the Casengo FAQ Selfservice page to your Wordpress site
-   Version: 1.0
+   Version: 1.1
    Author: Thijs van der Veen
    Author URI: http://www.casengo.com
    License: GPL2
