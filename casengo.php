@@ -3,7 +3,7 @@
    Plugin Name: Casengo FAQ - Selfservice Plugin
    Plugin URI: http://www.casengo.com/plugins/wordpress/v2
    Description: A plugin to embed the Casengo FAQ Selfservice page to your Wordpress site
-   Version: 1.1
+   Version: 1.2
    Author: Thijs van der Veen
    Author URI: http://www.casengo.com
    License: GPL2
@@ -38,7 +38,7 @@
     update_option('cas_faq_custom_css','');
 */
 
-function casengo_deactivate_plugin() {
+function casengo_faq_deactivate_plugin() {
     // remove FAQ page upon plugin deactivation                       
     $current_page_id = casengo_get_faq_page_id();
     if($current_page_id > 0) {
@@ -46,7 +46,7 @@ function casengo_deactivate_plugin() {
     }    
 }
 
-function casengo_activate_plugin() {
+function casengo_faq_activate_plugin() {
     // work-around to redirect to admin plugin page after plugin activiation
     add_option('casengo_faq_do_activation_redirect', true);
 }
@@ -55,15 +55,15 @@ function casengo_faq_redirect() {
     // redirect to plugin admin page after plugin activation
     if (get_option('casengo_faq_do_activation_redirect', false)) {
         delete_option('casengo_faq_do_activation_redirect');
-        wp_redirect(admin_url('options-general.php?page=casengoFAQSelfservicePlugin&firstload=true'));
+	 wp_redirect(admin_url('admin.php?page=casengo-faq-web-self-service-plugin/casengo.php'));
     }
 }
 
-register_activation_hook( __FILE__, 'casengo_activate_plugin' );
+register_activation_hook( __FILE__, 'casengo_faq_activate_plugin' );
 // on plugin initialization, call function to redirect to plugin admin page
 add_action('admin_init', 'casengo_faq_redirect');
 
-register_deactivation_hook( __FILE__, 'casengo_deactivate_plugin' );
+register_deactivation_hook( __FILE__, 'casengo_faq_deactivate_plugin' );
 
 function casengo_faq_isCurl(){
     // function to check if Curl is enabled (curl is mandatory)
@@ -240,8 +240,43 @@ function casengo_faq() {
     $cas_domain = get_option('cas_widget_domain');
  }
 
+function casengo_faq_admin_menu_exists( $handle, $sub = false){
+  global $menu, $submenu;
+  $check_menu = $sub ? $submenu : $menu;
+  if( empty( $check_menu ) )
+    return false;
+  foreach( $check_menu as $k => $item ){
+    if( $sub ){
+      foreach( $item as $sm ){
+        if($handle == $sm[2])
+          return true;
+      }
+    } else {
+      if( $handle == $item[2] )
+        return true;
+    }
+  }
+  return false;
+}
+
 add_action( 'template_redirect', 'casengo_faq_template' );
-add_action( 'admin_menu', 'casengo_faq_plugin_menu' );
+
+//add_action( 'admin_menu', 'casengo_faq_plugin_menu' );
+add_action( 'admin_menu', 'casengo_faq_admin_menu' );
+
+function casengo_faq_admin_menu() {
+	$file = dirname( __FILE__ ) . '/casengo.php';
+	$icon = "http://www.casengo.com/assets/favicon.png";
+
+	if (! casengo_faq_admin_menu_exists('casengo-menu-settings', false)) {
+		add_menu_page('Casengo ( FAQ )', 'Casengo ( FAQ )', 10, dirname( __FILE__ ) . '/casengo.php', '', $icon);
+	}
+	add_submenu_page(dirname( __FILE__ ) . '/casengo.php', 'Settings', 'Settings', 'manage_options', dirname( __FILE__ ) . '/casengo.php', 'casengo_faq_settings');	
+
+	//if (! casengo_admin_menu_exists('casengo-friends', true)) {
+		add_submenu_page('casengo-menu-settings', 'Our Friends', 'Our Friends', 'manage_options', 'casengo-friends', dirname( __FILE__ ) . '/friends.php');
+	//}
+}
 
 function casengo_faq_plugin_menu() {
     add_options_page( 'Casengo Selfservice FAQ page', 'Casengo FAQ', 'manage_options', 'casengoFAQSelfservicePlugin', 'casengo_faq_settings' );
@@ -459,43 +494,40 @@ function casengo_faq_settings() {
     <!-- *** CASENGO ID SECTION *** -->
 
     <p>To add Casengo's FAQ /Selfservice/page to your WordPress site, you must have a Casengo account. Have an account already? Great! If not, <a href="http://get.casengo.com/signup/?ref=wordpress-plugin-faq-admin&amp;utm_source=WordPress&amp;utm_medium=Plugin&amp;utm_campaign=WordPress%2BPlugin%2BSignups" target="_blank" title="Sign up for a free Casengo account" rel="nofollow">sign up here</a>.</p>
-    <p>
-        <ul style="margin-left:40px; font-size:18px">
+    <p><br>
+        <ul style="margin-left:40px; font-size:14px">
             <li><span style="font-size:18px">Follow the instructions below to install the FAQ page on your site:<br/></span>
-            <li>--------------------------------------------------------------------------------------</li>
-            <li>Step 1. <a href="http://get.casengo.com/signup/?ref=wordpress-plugin-faq-admin&amp;utm_source=WordPress&amp;utm_medium=Plugin&amp;utm_campaign=WordPress%2BPlugin%2BSignups" target="_blank" title="Sign up for a free Casengo account" rel="nofollow">Create a Casengo account for free</a></li>
-            <li>Step 2. Fill in your unique Casengo Username below</li>
-            <li>Step 3. Enter a page title</li>
-            <li>Step 4. Press 'Save Changes' to commit new settings</li>
-            <li>Step 5. <a href="<?php echo get_permalink($current_page_id); ?>" target="previewFAQpage">Preview the FAQ page</a> on your WordPress site </li>
-            <li>Step 6. <a href="http://login.casengo.com/admin/#!/kb/categories">Click here</a> to add categories and articles via the Casengo admin site</li>
+            <li>-------------------------------------------------------------------------------------------------------</li>
+            <li>Step 1. Fill in below your unique Casengo Subdomain (name you provided during sign up)</li>
+            <li>Step 2. Make sure to set the FAQ page status option to 'publicly visible' and press 'Save Changes'.</li>
+            <li>Step 3. <a href="<?php echo get_permalink($current_page_id); ?>" target="previewFAQpage">Preview the FAQ page</a> on your WordPress site </li>
+            <li>Step 4. <a href="http://login.casengo.com/admin/#!/kb/categories">Click here</a> to add categories and articles via the Casengo admin site</li>
         </ul>
     </p>
+<br>
     <p>
         We tried our best to make it look as good as possible in every WordPress theme. But if you encounter layout problems you can make changes in the advanced settings section.
     </p>
     <p>
         Have you tried the free <a href="http://wordpress.org/plugins/the-casengo-chat-widget/">Casengo Chat widget plugin</a>? It allows you to add chat/contact form functionality to your website.
     </p>
-    <br>
     <hr>
-    <br>
     <p><h3><strong><?php _e("General", 'menu-test' ); ?></h3></strong>
     Enter your unique Casengo username below. This field is mandatory. If it is not specified, the FAQ page will not be visible on your WordPress site.<br><br>
     <table style="margin-left:20px">
         <tr>
-            <td style="width:220px">FAQ page status</td>
+            <td style="width:220px"><strong>Casengo Username (subdomain)</strong></td>
+            <td>
+                http://<input type="text" name="cas_widget_domain" size="20" maxlength="64" style="font-weight: bold" value="<?php echo get_option('cas_widget_domain') ?>">.casengo.com
+            </td>
+        </tr>
+        <tr>
+            <td style="width:220px"><strong>FAQ page status</strong></td>
             <td>
                 <select name="cas_faq_enabled" style="width:160px" value="">
                     <option <?php if ($cas_faq_enabled == 'disabled') echo 'selected="true"' ?> value="disabled">Disabled</option>
                     <option <?php if ($cas_faq_enabled == 'public') echo 'selected="true"' ?> value="public">Publicly visible</option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:220px">Casengo Username (subdomain)</td>
-            <td>
-                http://<input type="text" name="cas_widget_domain" size="20" maxlength="64" style="font-weight: bold" value="<?php echo get_option('cas_widget_domain') ?>">.casengo.com
             </td>
         </tr>
         <tr><td><br/></td></tr>
