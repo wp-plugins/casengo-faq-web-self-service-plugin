@@ -322,16 +322,22 @@ function casengo_faq_settings() {
         } else {
             // submit button clicked
             if($_POST['cas_faq_style'] == 'custom-css') {
+		  // strip out slashes to prevent script injection		  
+		  $_POST['cas_faq_custom_css'] = str_replace('<','', $_POST['cas_faq_custom_css']);
+		  $_POST['cas_faq_custom_css'] = str_replace('>','', $_POST['cas_faq_custom_css']);
                 update_option( 'cas_faq_custom_css', $_POST['cas_faq_custom_css']);
             }                          
 
-            update_option('cas_widget_domain',$_POST['cas_widget_domain']);
+		if (preg_match('/^[a-z\d][a-z\d-]{0,62}$/i', $_POST['cas_widget_domain'])) {
+	            update_option('cas_widget_domain',$_POST['cas_widget_domain']);			
+		}
+
             update_option('cas_faq_searchbar', $_POST['cas_faq_searchbar']);
             update_option('cas_faq_toparticlesection', $_POST['cas_faq_toparticlesection']);
             update_option('cas_faq_compatibility', $_POST['cas_faq_compatibility']);
             update_option('cas_faq_show_article_bullets', $_POST['cas_faq_show_article_bullets']);
             update_option('cas_faq_enabled', $_POST['cas_faq_enabled']);
-            update_option('cas_faq_pagetitle', $_POST['cas_faq_pagetitle']);
+            update_option('cas_faq_pagetitle', htmlspecialchars($_POST['cas_faq_pagetitle']));
 
             // If customer enters empty name, use default
             if($_POST['cas_faq_pagetitle'] == '') {
@@ -342,12 +348,12 @@ function casengo_faq_settings() {
 
            if($_POST['cas_faq_enabled'] == 'disabled') {
                 // enabled checkbox is not checked                       
-                casengo_faq_update_page('disabled', $_POST['cas_faq_pagetitle']);
+                casengo_faq_update_page('disabled', htmlspecialchars($_POST['cas_faq_pagetitle']));
             } elseif ($_POST['cas_faq_enabled'] == 'private' ) {
-                casengo_faq_update_page('private', $_POST['cas_faq_pagetitle']);
+                casengo_faq_update_page('private', htmlspecialchars($_POST['cas_faq_pagetitle']));
             } elseif ($_POST['cas_faq_enabled'] == 'public' ) {
             
-                casengo_faq_update_page('public', $_POST['cas_faq_pagetitle']);
+                casengo_faq_update_page('public', htmlspecialchars($_POST['cas_faq_pagetitle']));
             }
 
             // store simple style editor values with update_option
@@ -430,20 +436,19 @@ function casengo_faq_settings() {
         var subdomainname=document.forms['form1'].cas_widget_domain.value;
         var menuname=document.forms['form1'].cas_faq_pagetitle.value;
     
-        var re = /^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/;
-        
+        var re = /^[a-z\d][a-z\d-]{0,62}$/i;
+
         if(re.test(subdomainname) != true) {
-        //if (subdomainname==null || subdomainname=="") {
             alert("Enter a valid casengo subdomain name.");
-            document.forms[frm]['cas_widget_domain'].focus();
+            document.forms['form1']['cas_widget_domain'].focus();
             return false;
+
         }
         if(menuname == null || menuname == '') {
             alert("Enter a page title.");
             document.forms['form1']['cas_faq_pagetitle'].focus();
             return false;
         }
-  return true;
   }
 </script>
 
