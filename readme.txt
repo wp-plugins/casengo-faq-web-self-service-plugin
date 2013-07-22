@@ -1,6 +1,6 @@
 === FAQ & Knowledge Base Plugin ===
 Contributors: casengo 
-Tags: add-on, addon, admin, answer, answers, article, casengo, cassengo, contact form, extension, extensions, faq, faq extension, faq plugin, faq portal, frequently asked question, help, help desk, helpdesk, html, images, knowledge base, knowledgebase, link, links, module, modules, page, plugin, portal, question, questions, seo, selfservice, self service, support, support portal, support plugin, support tool, web, web help, webselfservice, web selfservice, widget, wordpress, wordpress faq, wordpress plugin, wss
+Tags: add-on, addon, admin, answer, answers, article, casengo, cassengo, contact form, extension, extensions, faq, faq extension, faq help, faq plugin, faq portal, frequently asked question, help, help desk, helpdesk, html, images, knowledge base, knowledgebase, link, links, module, modules, page, plugin, portal, question, questions, seo, selfservice, self service, support, support portal, support plugin, support tool, web, web help, webselfservice, web selfservice, widget, wordpress, wordpress faq, wordpress plugin, wss
 Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: tags/1.2.0
