@@ -147,11 +147,14 @@ get_header(); ?>
     }
     
     $url = "http://" . get_option('cas_widget_domain'). ".casengo.com/support" . $querystring;
-//echo $url; exit;    
-    //  echo $url;exit;
-    $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-    $response = curl_exec($curl);
+
+    // load support portal via cURL (= deprecated
+    // $curl = curl_init($url);
+    // curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+    // $response = curl_exec($curl);
+
+    // load support portal via PHP's built-in command: file_get_contents (removes dependency on cURL and is faster too)
+    $response = file_get_contents($url);
 
      // process output
      // get the body content only
