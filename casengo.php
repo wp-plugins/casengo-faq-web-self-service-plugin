@@ -3,7 +3,7 @@
    Plugin Name: Casengo FAQ - Selfservice Plugin
    Plugin URI: http://www.casengo.com/plugins/wordpress/v2
    Description: A plugin to embed the Casengo FAQ Selfservice page to your Wordpress site
-   Version: 1.2
+   Version: 1.2.2
    Author: Thijs van der Veen
    Author URI: http://www.casengo.com
    License: GPL2
@@ -64,11 +64,6 @@ register_activation_hook( __FILE__, 'casengo_faq_activate_plugin' );
 add_action('admin_init', 'casengo_faq_redirect');
 
 register_deactivation_hook( __FILE__, 'casengo_faq_deactivate_plugin' );
-
-function casengo_faq_isCurl(){
-    // function to check if Curl is enabled (curl is mandatory)
-    return function_exists('curl_version');
-}
 
 function casengo_add_js() {
     // Register the script like this for a plugin:
@@ -135,21 +130,19 @@ function casengo_faq_update_page($status,$menuname='') {
 }
 
 function casengo_faq_template() {
-    if(casengo_faq_isCurl) {
-        // load js file & template when cURL is found
-        
-        // first, load the external js file
-        add_action( 'wp_enqueue_scripts', 'casengo_add_js' );  
-        
-        // add the page template file
-        add_filter( 'page_template', 'wpa_page_template');
-
-        function wpa_page_template( $page_template ) {
-            if ( is_page( get_option('cas_faq_pagetitle')) ) {
-                $page_template = dirname( __FILE__ ) . '/cas-faq-template.php';
-            }
-            return $page_template;
+    // load js file
+    
+    // first, load the external js file
+    add_action( 'wp_enqueue_scripts', 'casengo_add_js' );  
+    
+    // add the page template file
+    add_filter( 'page_template', 'wpa_page_template');
+    
+    function wpa_page_template( $page_template ) {
+        if ( is_page( get_option('cas_faq_pagetitle')) ) {
+            $page_template = dirname( __FILE__ ) . '/cas-faq-template.php';
         }
+        return $page_template;
     }
 }
 
@@ -489,13 +482,6 @@ function casengo_faq_settings() {
     }
 </script>
 
-<?php
-    if(!casengo_faq_isCurl) {
-        // Curl is not installed
-        echo '<p><div class="error"><strong>The plugin is deactivated!</strong><br><br>The cURL module is not installed in your PHP configuration.<br>For more information on how to to this, <a href="http://www.tomjepson.co.uk/enabling-curl-in-php-php-ini-wamp-xamp-ubuntu/">click here</a>.</div></p>';
-    } else {
-?>
-
     <!-- *** CASENGO ID SECTION *** -->
 
     <p>To add Casengo's FAQ /Selfservice/page to your WordPress site, you must have a Casengo account. Have an account already? Great! If not, <a href="http://get.casengo.com/signup/?ref=wordpress-plugin-faq-admin&amp;utm_source=WordPress&amp;utm_medium=Plugin&amp;utm_campaign=WordPress%2BPlugin%2BSignups" target="_blank" title="Sign up for a free Casengo account" rel="nofollow">sign up here</a>.</p>
@@ -634,7 +620,7 @@ function casengo_faq_settings() {
             } catch (err) { }
     </script>
 
-<?php } ?>
+
 </form>
 
 <?php	
