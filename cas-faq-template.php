@@ -123,7 +123,7 @@ get_header(); ?>
 <?php
     // curl needed to load
     // if url contains id, page variables (article/category pages), add querystring to fetch url
-    
+           
         // first determine if default permalink is used for faq page (?page_id=123)
     if(isset($_GET['page_id'])) {
         $permalink_default = true;        
@@ -172,7 +172,7 @@ get_header(); ?>
      }
      
      echo $output[1] . '<br/>';
-    curl_close($curl);
+    //curl_close($curl);
 ?>
 			</div>
             </div><!-- #content -->
